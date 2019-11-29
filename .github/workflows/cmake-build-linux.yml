@@ -46,7 +46,7 @@ jobs:
     - name: Run build script.
       shell: bash
       run: |
-        build/build-github.bat
+        build/build-github.sh
 
     # Step : Upload artifacts.
     - name: Upload Artifacts
