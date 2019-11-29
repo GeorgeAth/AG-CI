@@ -13,7 +13,7 @@ on:
 env:
   # Script configuration.
   #AG_BUILD_TYPE: Release
-  #AG_BUILD_PATH: build_windows
+  AG_BUILD_PATH: build_windows
 
 jobs:
   cmake-build-windows:
