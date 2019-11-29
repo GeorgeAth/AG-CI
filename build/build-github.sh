@@ -1,4 +1,4 @@
 #!/bin/bash
 
-echo Current directory (source) : $PWD
+echo "Current directory (source) : $PWD"
 
