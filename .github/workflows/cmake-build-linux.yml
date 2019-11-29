@@ -2,7 +2,7 @@
 # AG Development Framework.
 # Copyright 2011-2020 GeorgeAth. All Rights Reserved.
 #//////////////////////////////////////////////////////////////////////////////
-name: Windows
+name: Linux
 
 # This workflow is triggered on pushes to the master branch.
 on:
@@ -12,13 +12,13 @@ on:
 
 env:
   # Script configuration.
-  AG_BUILD_TYPE: Release
-  AG_BUILD_PATH: build_windows
+  #AG_BUILD_TYPE: Release
+  AG_BUILD_PATH: build_linux
 
 jobs:
-  cmake-build-windows:
+  cmake-build-linux:
     # Set job.Name.
-    name: cmake-build-windows
+    name: cmake-build-linux
     # Set job.TargetOS.
     runs-on: linux-latest
 
@@ -28,54 +28,16 @@ jobs:
       with:
         fetch-depth: 1
 
-    # Step : Download dependencies. [TODO]
+    # Step : Download dependencies 1/2.
     - uses: actions/checkout@v1
       with:
-        repository: GeorgeAth/AG-Test
+        repository: GeorgeAth/AG-LIB
         ref: refs/heads/master
-        token: ${{ secrets.AGDEV_PAT }}
+        token: ${{ secrets.agci }}
 
-    # Step : Test build script. [TEST]
-    - name: Test build script.
-      shell: cmd
-      run: |
-        build/build-github.bat
-
-    # Step : Create build directory.
-    - name: Create build directory.
-      shell: bash
-      working-directory: ${{runner.workspace}}
-      run: |
-        cmake -E make_directory $AG_BUILD_PATH
-
-    # Step : Create project files.
-    - name: Create project files.
-      shell: bash
-      working-directory: ${{runner.workspace}}
-      run: |
-        cd $AG_BUILD_PATH
-        cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$AG_BUILD_TYPE
-
-    # Step : Run build script.
-    - name: Build.
-      shell: bash
-      working-directory: ${{runner.workspace}}
-      # Specify a target with "--target <NAME>"
-      run: |
-        cd $AG_BUILD_PATH
-        cmake --build . --config $AG_BUILD_TYPE
-
-    # Step : Run test script.
-    - name: Test
-      shell: bash
-      working-directory: ${{runner.workspace}}
-      run: |
-        cd $AG_BUILD_PATH
-        ctest -C $AG_BUILD_TYPE
-
-    # Step : Upload artifacts.
-    - name: Upload Artifacts
-      uses: actions/upload-artifact@v1
+    # Step : Download dependencies 2/2.
+    - uses: actions/checkout@v1
       with:
-        name: ArtifactsWindows
-        path: ../build_windows/out
+        repository: GeorgeAth/AG-DEV
+        ref: refs/heads/master
+        token: ${{ secrets.agci }}
