@@ -35,6 +35,12 @@ jobs:
         ref: refs/heads/master
         token: ${{ secrets.AGDEV_PAT }}
 
+    # Step : Test build script. [TEST]
+    - name: Test build script.
+      shell: cmd
+      run: |
+        build/build-github.bat
+
     # Step : Create build directory.
     - name: Create build directory.
       shell: bash
