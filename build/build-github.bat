@@ -50,6 +50,11 @@ echo CMake Command : %AG_CMAKE_CMD%
 :: Ensure CMake is installed.
 cmake --version
 
+%AG_CMAKE_CMD%
+
+cmake --build . --config %AG_BUILD_TYPE%
+
+ctest -C %AG_BUILD_TYPE%
 
 :://///////////////////////////////////////////////////////////////////////////
 
