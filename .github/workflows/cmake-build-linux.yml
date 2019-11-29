@@ -41,3 +41,16 @@ jobs:
         repository: GeorgeAth/AG-DEV
         ref: refs/heads/master
         token: ${{ secrets.agci }}
+
+    # Step : Run build script.
+    - name: Run build script.
+      shell: bash
+      run: |
+        build/build-github.bat
+
+    # Step : Upload artifacts.
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: ArtifactsLinux
+        path: ../build/out
