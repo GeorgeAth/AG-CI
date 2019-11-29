@@ -44,6 +44,7 @@ jobs:
 
     # Step : Run build script.
     - name: Run build script.
+      shell: bash
       run: |
         build/build-github.sh
 
