@@ -52,5 +52,5 @@ jobs:
     - name: Upload Artifacts
       uses: actions/upload-artifact@v1
       with:
-        name: ArtifactsLinux
+        name: artifacts_linux
         path: ../build/out/bin
