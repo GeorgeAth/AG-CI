@@ -36,26 +36,25 @@ echo Current directory (build) : %CD%
 :://///////////////////////////////////////////////////////////////////////////
 
 :://///////////////////////////////////////////////////////////////////////////
-:: Build the cmake command.
+:: Build the cmake-create command.
 SET "AG_CMAKE_CMD=cmake ../%AG_DIR_DEV%"
 ::-----------------------------------------------------------------------------
 
 ::-----------------------------------------------------------------------------
-:: Print the cmake command
-echo CMake Command : %AG_CMAKE_CMD%
+:: Print the cmake-create command.
+echo cmake-create command : %AG_CMAKE_CMD%
 :://///////////////////////////////////////////////////////////////////////////
 
-
-:://///////////////////////////////////////////////////////////////////////////
-:: Ensure CMake is installed.
+:: Ensure cmake is installed.
 cmake --version
 
+:://///////////////////////////////////////////////////////////////////////////
+:: Run the cmake-create command.
 %AG_CMAKE_CMD%
-
+:: Run the cmake-build command.
 cmake --build . --config %AG_BUILD_TYPE%
-
+:: Run the cmake-test command.
 ctest -C %AG_BUILD_TYPE%
-
 :://///////////////////////////////////////////////////////////////////////////
 
 
