@@ -20,18 +20,18 @@ echo "Current directory (source) : $PWD"
 #//////////////////////////////////////////////////////////////////////////////
 # Change directory to root.
 cd ../
-echo Current directory (root) : $PWD
+echo "Current directory (root) : $PWD"
 # Ensure required folders exist.
-if [ ! -d "$AG_DIR_LIB" ]; then ( echo lib not found. && exit 1 ) fi
-if [ ! -d "$AG_DIR_DEV" ]; then ( echo dev not found. && exit 1 ) fi
+if [ ! -d "$AG_DIR_LIB" ]; then ( echo "lib not found." && exit 1 ) fi
+if [ ! -d "$AG_DIR_DEV" ]; then ( echo "dev not found." && exit 1 ) fi
 #//////////////////////////////////////////////////////////////////////////////
 # Ensure build directory not exist.
-if [ -d "$AG_DIR_BUILD" ]; then ( echo build exist. && exit 1 ) fi
+if [ -d "$AG_DIR_BUILD" ]; then ( echo "build exist." && exit 1 ) fi
 # Create build directory.
 mkdir -p -- "$AG_DIR_BUILD"
 # Change directory to build.
 cd $AG_DIR_BUILD
-echo Current directory (build) : $PWD
+echo "Current directory (build) : $PWD"
 #//////////////////////////////////////////////////////////////////////////////
 
 #//////////////////////////////////////////////////////////////////////////////
@@ -41,7 +41,7 @@ AG_CMAKE_CMD ="cmake ../$AG_DIR_DEV"
 
 #------------------------------------------------------------------------------
 # Print the cmake command
-echo CMake Command : $AG_CMAKE_CMD
+echo "CMake Command : $AG_CMAKE_CMD"
 #//////////////////////////////////////////////////////////////////////////////
 
 
