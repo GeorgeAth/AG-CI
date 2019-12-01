@@ -10,51 +10,60 @@ setlocal
 :://///////////////////////////////////////////////////////////////////////////
 :: Enviroment Variables
 set "AG_BUILD_TYPE=Release"
-set "AG_DIR_BUILD=build"
-set "AG_DIR_LIB=AG-LIB"
-set "AG_DIR_DEV=AG-DEV"
+set "AG_DIR_OUT=build"
+set "AG_DIR_SRC=AG-DEV"
+set "AG_DIR_DEP=AG-LIB"
 :://///////////////////////////////////////////////////////////////////////////
 
 :://///////////////////////////////////////////////////////////////////////////
-:: Print current directory (source).
-echo Current directory (source) : %CD%
-:://///////////////////////////////////////////////////////////////////////////
+:: Print current script.
+echo file : %0
+:: Print the current directory (expected to be root->sub-module).
+echo home : %CD%
 :: Change directory to root.
 cd ../
-echo Current directory (root) : %CD%
+echo root : %CD%
 :: Ensure required folders exist.
-if not exist %AG_DIR_LIB% ( echo lib not found. && goto ABORT_OPERATION )
-if not exist %AG_DIR_DEV% ( echo dev not found. && goto ABORT_OPERATION )
+if not exist %AG_DIR_SRC% ( echo src not found. && goto ABORT_OPERATION )
+if not exist %AG_DIR_DEP% ( echo dep not found. && goto ABORT_OPERATION )
 :://///////////////////////////////////////////////////////////////////////////
-:: Ensure build directory not exist.
-if exist %AG_DIR_BUILD% ( echo build exist. && goto ABORT_OPERATION )
-:: Create build directory.
-mkdir %AG_DIR_BUILD%
-:: Change directory to build.
-cd %AG_DIR_BUILD%
-echo Current directory (build) : %CD%
+:: Ensure output directory does not exist.
+if exist %AG_DIR_OUT% ( echo out %AG_DIR_OUT% exist. && goto ABORT_OPERATION )
+:: Create output directory.
+mkdir %AG_DIR_OUT%
+:: Change directory to output.
+cd %AG_DIR_OUT%
+echo output : %CD%
 :://///////////////////////////////////////////////////////////////////////////
 
 :://///////////////////////////////////////////////////////////////////////////
-:: Build the cmake-create command.
-SET "AG_CMAKE_CMD=cmake ../%AG_DIR_DEV%"
+:: Build the cmake create command.
+SET "AG_CMD_CREATE=cmake ../%AG_DIR_SRC%"
 ::-----------------------------------------------------------------------------
+:: Build the cmake build command.
+SET "AG_CMD_BUILD=cmake --build . --config %AG_BUILD_TYPE%"
+::-----------------------------------------------------------------------------
+:: Build the cmake test command.
+SET "AG_CMD_TEST=ctest -C %AG_BUILD_TYPE%"
+:://///////////////////////////////////////////////////////////////////////////
 
-::-----------------------------------------------------------------------------
-:: Print the cmake-create command.
-echo cmake-create command : %AG_CMAKE_CMD%
+:://///////////////////////////////////////////////////////////////////////////
+:: Print cmake command.
+echo cmake create command : %AG_CMD_CREATE%
+echo cmake build command : %AG_CMD_BUILD%
+echo cmake test command : %AG_CMD_TEST%
 :://///////////////////////////////////////////////////////////////////////////
 
 :: Ensure cmake is installed.
-cmake --version
+::cmake --version
 
 :://///////////////////////////////////////////////////////////////////////////
 :: Run the cmake-create command.
-%AG_CMAKE_CMD%
+%AG_CMD_CREATE%
 :: Run the cmake-build command.
-cmake --build . --config %AG_BUILD_TYPE%
+%AG_CMD_BUILD%
 :: Run the cmake-test command.
-ctest -C %AG_BUILD_TYPE%
+%AG_CMD_TEST%
 :://///////////////////////////////////////////////////////////////////////////
 
 
