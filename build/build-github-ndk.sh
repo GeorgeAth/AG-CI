@@ -68,6 +68,8 @@ fi
 set AG_TEMP_DIR="$PWD"
 cd ${AG_DIR_NDK}
 dir
+cd ./build
+dir
 cd ./cmake
 dir
 cd ${AG_TEMP_DIR}
