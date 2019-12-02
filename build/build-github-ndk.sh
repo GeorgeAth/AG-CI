@@ -67,12 +67,16 @@ fi
 #------------------------------------------------------------------------------
 set AG_TEMP_DIR="$PWD"
 cd ${AG_DIR_NDK}
+echo "$PWD"
 dir
 cd ./build
+echo "$PWD"
 dir
 cd ./cmake
+echo "$PWD"
 dir
 cd ${AG_TEMP_DIR}
+echo "$PWD"
 exit 1
 #//////////////////////////////////////////////////////////////////////////////
 
