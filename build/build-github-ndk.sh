@@ -72,15 +72,16 @@ fi
 #//////////////////////////////////////////////////////////////////////////////
 
 
+
 #//////////////////////////////////////////////////////////////////////////////
 # Build the cmake create command.
 AG_CMD_CREATE="cmake ../$AG_DIR_SRC"
 AG_CMD_CREATE="$AG_CMD_CREATE \
 -DCMAKE_SYSTEM_NAME=Android \
--DCMAKE_SYSTEM_VERSION=24 \
+-DCMAKE_SYSTEM_VERSION=21 \
 -DCMAKE_ANDROID_ARCH_ABI=arm64-v8a \
 -DCMAKE_ANDROID_NDK=$AG_DIR_NDK \
--DCMAKE_ANDROID_STL_TYPE=gnustl_static \
+-DCMAKE_ANDROID_STL_TYPE=c++_shared \
 "
 #------------------------------------------------------------------------------
 # Build the cmake build command.
