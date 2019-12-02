@@ -45,6 +45,9 @@ if [[ ! -d ${ANDROID_HOME} ]]; then
 	echo "Andorid SDK not found."
 	exit 1
 fi
+echo "Andorid SDK found at '${ANDROID_HOME}"
+cd ${ANDROID_HOME}
+dir
 #------------------------------------------------------------------------------
 # NDK
 #------------------------------------------------------------------------------
