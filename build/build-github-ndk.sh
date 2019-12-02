@@ -65,16 +65,23 @@ else
 	exit 1
 fi
 #------------------------------------------------------------------------------
-set AG_TEMP_DIR="$PWD"
-cd ${AG_DIR_NDK}
-dir
-cd ${AG_TEMP_DIR}
+#set AG_TEMP_DIR="$PWD"
+#cd ${AG_DIR_NDK}
+#dir
+#cd ${AG_TEMP_DIR}
 #//////////////////////////////////////////////////////////////////////////////
 
 
 #//////////////////////////////////////////////////////////////////////////////
 # Build the cmake create command.
 AG_CMD_CREATE="cmake ../$AG_DIR_SRC"
+AG_CMD_CREATE="$AG_CMD_CREATE \
+-DCMAKE_SYSTEM_NAME=Android \
+-DCMAKE_SYSTEM_VERSION=21 \
+-DCMAKE_ANDROID_ARCH_ABI=arm64-v8a \
+-DCMAKE_ANDROID_NDK=$AG_DIR_NDK \
+-DCMAKE_ANDROID_STL_TYPE=gnustl_static \
+"
 #------------------------------------------------------------------------------
 # Build the cmake build command.
 AG_CMD_BUILD="cmake --build . --config $AG_BUILD_TYPE"
