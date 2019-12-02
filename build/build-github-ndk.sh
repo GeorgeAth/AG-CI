@@ -49,22 +49,21 @@ echo "Andorid SDK found at '${ANDROID_HOME}"
 #------------------------------------------------------------------------------
 # NDK
 #------------------------------------------------------------------------------
-# Set the Android NDK path.
-AG_DIR_NDK="${ANDROID_HOME}/ndk"
 # Ensure android sdk is installed.
-if [[ ! -d $AG_DIR_NDK ]]; then
-	echo "Andorid NDK (Side by side) not found."
-	# Set the Android NDK to the obsolete path.
+if [[ -d "${ANDROID_HOME}/ndk" ]];
+then
+	# Set the Android NDK path.
+	AG_DIR_NDK="${ANDROID_HOME}/ndk"
+	echo "Andorid NDK (Side by side) found at '$AG_DIR_NDK', version '${ANDROID_NDK_VERSION}'"
+elif [[ -d "${ANDROID_HOME}/ndk-bundle" ]];
+then
+	# Set the Android NDK path.
 	AG_DIR_NDK="${ANDROID_HOME}/ndk-bundle"
-	if [[ ! -d $AG_DIR_NDK ]]; then
-		echo "Andorid legacy NDK not found."
-		exit 1
-	fi
+	echo "Andorid legacy NDK found at '$AG_DIR_NDK', version '${ANDROID_NDK_VERSION}'"
+else
+	echo "Andorid NDK not found."
+	exit 1
 fi
-# Print NDK version.
-# Expected NDK version: 20.0.5594570
-echo "Andorid NDK found at '$AG_DIR_NDK', version '${ANDROID_NDK_VERSION}'"
-exit 0
 #------------------------------------------------------------------------------
 set AG_TEMP_DIR="$PWD"
 cd ${AG_DIR_NDK}
