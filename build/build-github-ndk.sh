@@ -73,16 +73,20 @@ fi
 
 
 
+
+
 #//////////////////////////////////////////////////////////////////////////////
 # Build the cmake create command.
-AG_CMD_CREATE="cmake ../$AG_DIR_SRC"
-AG_CMD_CREATE="$AG_CMD_CREATE \
--DCMAKE_SYSTEM_NAME=Android \
--DCMAKE_SYSTEM_VERSION=21 \
--DCMAKE_ANDROID_ARCH_ABI=arm64-v8a \
--DCMAKE_ANDROID_NDK=$AG_DIR_NDK \
--DCMAKE_ANDROID_STL_TYPE=c++_shared \
-"
+AG_CMD_CREATE="cmake \
+-G Ninja \
+../$AG_DIR_SRC \
+-DCMAKE_BUILD_TYPE=Release \
+-DCMAKE_TOOLCHAIN_FILE=$AG_DIR_NDK/build/cmake/android.toolchain.cmake \
+-DANDROID_TOOLCHAIN=clang \
+-DANDROID_PLATFORM=android-21 \
+-DANDROID_ABI=arm64-v8a \
+-DANDROID_STL=c++_shared \
+-DCMAKE_INSTALL_PREFIX=$AG_DIR_OUT/install/android/arm64-v8a"
 #------------------------------------------------------------------------------
 # Build the cmake build command.
 AG_CMD_BUILD="cmake --build . --config $AG_BUILD_TYPE"
