@@ -65,10 +65,13 @@ else
 	exit 1
 fi
 #------------------------------------------------------------------------------
-#set AG_TEMP_DIR="$PWD"
-#cd ${AG_DIR_NDK}
-#dir
-#cd ${AG_TEMP_DIR}
+set AG_TEMP_DIR="$PWD"
+cd ${AG_DIR_NDK}
+dir
+cd ./cmake
+dir
+cd ${AG_TEMP_DIR}
+exit 1
 #//////////////////////////////////////////////////////////////////////////////
 
 
