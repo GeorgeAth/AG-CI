@@ -77,7 +77,7 @@ echo "$PWD"
 dir
 cd ${AG_TEMP_DIR}
 echo "$PWD"
-exit 1
+#exit 1
 #//////////////////////////////////////////////////////////////////////////////
 
 
@@ -86,7 +86,6 @@ exit 1
 AG_CMD_CREATE="cmake \
 ../$AG_DIR_SRC \
 -DCMAKE_SYSTEM_NAME=Android \
--DANDROID_TOOLCHAIN=clang \
 -DCMAKE_ANDROID_STANDALONE_TOOLCHAIN=$AG_DIR_NDK/build/cmake/android.toolchain.cmake
 "
 #------------------------------------------------------------------------------
