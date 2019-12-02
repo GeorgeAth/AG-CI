@@ -52,7 +52,7 @@ dir
 # NDK
 #------------------------------------------------------------------------------
 # Set the Android NDK path.
-AG_DIR_NDK="${ANDROID_HOME}/ndk-bundle"
+AG_DIR_NDK="${ANDROID_HOME}/ndk"
 #------------------------------------------------------------------------------
 # Ensure android sdk is installed.
 if [[ ! -d $AG_DIR_NDK ]]; then
