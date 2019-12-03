@@ -46,29 +46,53 @@ if [[ ! -d ${ANDROID_HOME} ]]; then
 	exit 1
 fi
 echo "Andorid SDK found at '${ANDROID_HOME}"
-cd ${ANDROID_HOME}
-dir
 #------------------------------------------------------------------------------
 # NDK
 #------------------------------------------------------------------------------
-# Set the Android NDK path.
-AG_DIR_NDK="${ANDROID_HOME}/ndk-bundle"
-#------------------------------------------------------------------------------
 # Ensure android sdk is installed.
-if [[ ! -d $AG_DIR_NDK ]]; then
+if [[ -d "${ANDROID_HOME}/ndk" ]];
+then
+	# Set the Android NDK path.
+	AG_DIR_NDK="${ANDROID_HOME}/ndk"
+	echo "Andorid NDK (Side by side) found at '$AG_DIR_NDK', version '${ANDROID_NDK_VERSION}'"
+elif [[ -d "${ANDROID_HOME}/ndk-bundle" ]];
+then
+	# Set the Android NDK path.
+	AG_DIR_NDK="${ANDROID_HOME}/ndk-bundle"
+	echo "Andorid legacy NDK found at '$AG_DIR_NDK', version '${ANDROID_NDK_VERSION}'"
+else
 	echo "Andorid NDK not found."
 	exit 1
 fi
-# Print NDK version.
-# Expected NDK version: 20.0.5594570
-echo "Andorid NDK found. (version: ${ANDROID_NDK_VERSION})"
-exit 0
+#------------------------------------------------------------------------------
+#set AG_TEMP_DIR="$PWD"
+#cd ${AG_DIR_NDK}
+#echo "$PWD"
+#dir
+#cd ./build
+#echo "$PWD"
+#dir
+#cd ./cmake
+#echo "$PWD"
+#dir
+#cd ${AG_TEMP_DIR}
+#echo "$PWD"
+#exit 1
 #//////////////////////////////////////////////////////////////////////////////
 
 
 #//////////////////////////////////////////////////////////////////////////////
 # Build the cmake create command.
-AG_CMD_CREATE="cmake ../$AG_DIR_SRC"
+AG_CMD_CREATE="cmake \
+../$AG_DIR_SRC \
+-DCMAKE_BUILD_TYPE=Release \
+-DCMAKE_TOOLCHAIN_FILE=$AG_DIR_NDK/build/cmake/android.toolchain.cmake \
+-DANDROID_TOOLCHAIN=clang \
+-DANDROID_PLATFORM=android-21 \
+-DANDROID_ABI=arm64-v8a \
+-DANDROID_STL=c++_shared \
+-DCMAKE_INSTALL_PREFIX=$AG_DIR_OUT/install/android/arm64-v8a
+"
 #------------------------------------------------------------------------------
 # Build the cmake build command.
 AG_CMD_BUILD="cmake --build . --config $AG_BUILD_TYPE"
