@@ -14,6 +14,7 @@ env:
   # Script configuration.
   #AG_BUILD_TYPE: Release
   AG_BUILD_PATH: build_android
+  AG_TARGET_FILE: ./build/run-ci-ndk.sh
 
 jobs:
   cmake-build-android:
@@ -34,6 +35,7 @@ jobs:
         repository: GeorgeAth/AG-LIB
         ref: refs/heads/master
         token: ${{ secrets.agci }}
+        fetch-depth: 1
 
     # Step : Download dependencies 2/2.
     - uses: actions/checkout@v1
@@ -41,12 +43,13 @@ jobs:
         repository: GeorgeAth/AG-DEV
         ref: refs/heads/master
         token: ${{ secrets.agci }}
+        fetch-depth: 1
 
-    # Step : Run build script.
-    - name: Run build script.
+    # Step : Run CI.
+    - name: Run CI.
       shell: bash
       run: |
-        build/build-github-ndk.sh
+        build/run-ci.sh
 
     # Step : Upload artifacts.
     - name: Upload Artifacts
