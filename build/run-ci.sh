@@ -5,9 +5,9 @@
 #//////////////////////////////////////////////////////////////////////////////
 
 # Set the default target name.
-if [ -z "$AG_TARGET_NAME" ]; then ( AG_TARGET_NAME="AG-DEV" ) fi
+if [ -z "${AG_TARGET_NAME}" ]; then AG_TARGET_NAME="AG-DEV"; fi
 # Set the default target file.
-if [ -z "$AG_TARGET_FILE" ]; then ( AG_TARGET_FILE="./build/run-ci.sh" ) fi
+if [ -z "${AG_TARGET_FILE}" ]; then AG_TARGET_FILE="./build/run-ci.sh"; fi
 
 # LOG: script name.
 echo "script   : $0"
