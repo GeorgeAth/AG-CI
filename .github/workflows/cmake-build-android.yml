@@ -14,7 +14,7 @@ env:
   # Script configuration.
   #AG_BUILD_TYPE: Release
   AG_BUILD_PATH: build_android
-  AG_TARGET_FILE: ./build/run-ci-ndk.sh
+  AG_TARGET_ARGS: -android
 
 jobs:
   cmake-build-android:
