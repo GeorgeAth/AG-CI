@@ -11,7 +11,7 @@ if "%AG_TARGET_NAME%"=="" ( SET "AG_TARGET_NAME=AG-DEV" )
 :: Set the default target file.
 if "%AG_TARGET_FILE%"=="" ( SET "AG_TARGET_FILE=.\build\build-script.bat" )
 :: Set the default arguments.
-if "%AG_TARGET_ARGS%"=="" ( SET "AG_TARGET_ARGS= -ci" )
+if "%AG_TARGET_ARGS%"=="" ( SET "AG_TARGET_ARGS=-ci" )
 
 :: LOG: (current directory) > (run command) [arguments]
 echo.
@@ -24,7 +24,7 @@ pushd ..
 pushd %AG_TARGET_NAME%
 echo DIR : %CD%
 :: Run the target.
-SET "AG_RUN_CMD=%AG_TARGET_FILE%%AG_TARGET_ARGS%"
+SET "AG_RUN_CMD=%AG_TARGET_FILE% %AG_TARGET_ARGS%"
 echo RUN : %AG_RUN_CMD%
 CALL %AG_RUN_CMD%
 echo.
