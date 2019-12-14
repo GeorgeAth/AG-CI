@@ -25,7 +25,7 @@ pushd $AG_TARGET_NAME
 echo "DIR : $PWD"
 # Run the target.
 AG_RUN_CMD="$AG_TARGET_FILE $AG_TARGET_ARGS"
-sh $AG_RUN_CMD
+$AG_RUN_CMD
 echo
 # Restore path.
 echo "INFO: Retore path."
