@@ -7,7 +7,7 @@
 #//////////////////////////////////////////////////////////////////////////////
 
 # Set the default target name.
-if [ -z "${AG_TARGET_NAME}" ]; then export AG_TARGET_NAME="AG-DEP"; fi
+if [ -z "${AG_TARGET_NAME}" ]; then export AG_TARGET_NAME="AG-DEV"; fi
 # Set the default target file.
 if [ -z "${AG_TARGET_FILE}" ]; then export AG_TARGET_FILE="./scripts/build-script.sh"; fi
 # Set the default arguments.

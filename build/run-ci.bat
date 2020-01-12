@@ -7,7 +7,7 @@
 :://///////////////////////////////////////////////////////////////////////////
 
 :: Set the default target name.
-if "%AG_TARGET_NAME%"=="" ( SET "AG_TARGET_NAME=AG-DEP" )
+if "%AG_TARGET_NAME%"=="" ( SET "AG_TARGET_NAME=AG-DEV" )
 :: Set the default target file.
 if "%AG_TARGET_FILE%"=="" ( SET "AG_TARGET_FILE=.\scripts\build-script.bat" )
 :: Set the default arguments.
