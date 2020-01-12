@@ -3,15 +3,15 @@
 # AG Development Framework.
 # Copyright 2011-2020 GeorgeAth. All Rights Reserved.
 #//////////////////////////////////////////////////////////////////////////////
-# AG-CI : Run.
+# AG-CI : Run CI.
 #//////////////////////////////////////////////////////////////////////////////
 
+# Set the default target name.
+if [ -z "${AG_TARGET_NAME}" ]; then export AG_TARGET_NAME="AG-DEP"; fi
 # Set the default target file.
-if [ -z "${AG_TARGET_FILE}" ]; then export AG_TARGET_FILE="./build/build-script.sh"; fi
+if [ -z "${AG_TARGET_FILE}" ]; then export AG_TARGET_FILE="./scripts/build-script.sh"; fi
 # Set the default arguments.
 if [ -z "${AG_TARGET_ARGS}" ]; then export AG_TARGET_ARGS="-ci"; fi
-# Set the default target name.
-if [ -z "${AG_TARGET_NAME}" ]; then export AG_TARGET_NAME="AG-DEV"; fi
 
 # LOG: (current directory) > (run command) [arguments]
 echo
@@ -24,7 +24,8 @@ pushd ../$AG_TARGET_NAME
 echo "DIR : $PWD"
 # Construct run command.
 AG_RUN_CMD="$AG_TARGET_FILE $AG_TARGET_ARGS"
-# Run the target.
+# Run the command.
+echo "RUN : $AG_RUN_CMD"
 $AG_RUN_CMD
 echo
 # Restore path.

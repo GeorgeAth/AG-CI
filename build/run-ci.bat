@@ -3,15 +3,15 @@
 :: AG Development Framework.
 :: Copyright 2011-2020 GeorgeAth. All Rights Reserved.
 :://///////////////////////////////////////////////////////////////////////////
-:: AG-CI : Run.
+:: AG-CI : Run CI.
 :://///////////////////////////////////////////////////////////////////////////
 
+:: Set the default target name.
+if "%AG_TARGET_NAME%"=="" ( SET "AG_TARGET_NAME=AG-DEP" )
 :: Set the default target file.
-if "%AG_TARGET_FILE%"=="" ( SET "AG_TARGET_FILE=.\build\build-script.bat" )
+if "%AG_TARGET_FILE%"=="" ( SET "AG_TARGET_FILE=.\scripts\build-script.bat" )
 :: Set the default arguments.
 if "%AG_TARGET_ARGS%"=="" ( SET "AG_TARGET_ARGS=-ci" )
-:: Set the default target name.
-if "%AG_TARGET_NAME%"=="" ( SET "AG_TARGET_NAME=AG-DEV" )
 
 :: LOG: (current directory) > (run command) [arguments]
 echo.
@@ -24,7 +24,7 @@ pushd ..\%AG_TARGET_NAME%
 echo DIR : %CD%
 :: Construct run command.
 SET "AG_RUN_CMD=%AG_TARGET_FILE% %AG_TARGET_ARGS%"
-:: Run the target.
+:: Run the command.
 echo RUN : %AG_RUN_CMD%
 CALL %AG_RUN_CMD%
 echo.

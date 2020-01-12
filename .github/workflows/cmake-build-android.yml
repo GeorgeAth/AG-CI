@@ -32,7 +32,7 @@ jobs:
     # Step : Download dependencies 1/2.
     - uses: actions/checkout@v1
       with:
-        repository: GeorgeAth/AG-LIB
+        repository: GeorgeAth/AG-DEP
         ref: refs/heads/master
         token: ${{ secrets.agci }}
         fetch-depth: 1
