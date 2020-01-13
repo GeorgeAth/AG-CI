@@ -16,21 +16,25 @@ if [ -z "${AG_TARGET_ARGS}" ]; then export AG_TARGET_ARGS="-ci"; fi
 # LOG: (current directory) > (run command) [arguments]
 echo
 echo "$PWD>$0 $*"
-# Ensure required folders exist and if not exit this script with error 1.
+# Ensure required folders exist and if not exit this script with error.
 if [ ! -d "../$AG_TARGET_NAME" ]; then { echo "ERROR: target not found."; exit 1; } fi
 # Go to target-root.
 echo "INFO: Change directory to target-root."
-pushd ../$AG_TARGET_NAME
+pushd ../$AG_TARGET_NAME > /dev/null
 echo "DIR : $PWD"
 # Construct run command.
-AG_RUN_CMD="$AG_TARGET_FILE $AG_TARGET_ARGS"
+if [ -z "${AG_TARGET_ARGS}" ]; then {
+	AG_RUN_CMD="$AG_TARGET_FILE";
+} else {
+	AG_RUN_CMD="$AG_TARGET_FILE $AG_TARGET_ARGS";
+} fi
 # Run the command.
 echo "RUN : $AG_RUN_CMD"
 $AG_RUN_CMD
 echo
 # Restore path.
 echo "INFO: Restore path from target-root."
-popd
+popd > /dev/null
 echo "DIR : $PWD"
 # Check for errors.
 if [ $? -ne 0 ]; then {
