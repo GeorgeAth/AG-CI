@@ -20,7 +20,7 @@ echo "$PWD>$0 $*"
 if [ ! -d "../$AG_TARGET_NAME" ]; then { echo "ERROR: target not found."; exit 1; } fi
 # Go to target-root.
 echo "INFO: Change directory to target-root."
-pushd ../$AG_TARGET_NAME > /dev/null
+pushd "../$AG_TARGET_NAME" > /dev/null
 echo "DIR : $PWD"
 # Construct run command.
 if [ -z "${AG_TARGET_ARGS}" ]; then {
