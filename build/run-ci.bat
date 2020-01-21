@@ -9,9 +9,9 @@
 :: Set the default target name.
 if "%AG_TARGET_NAME%"=="" ( SET "AG_TARGET_NAME=AG-DEV" )
 :: Set the default target file.
-if "%AG_TARGET_FILE%"=="" ( SET "AG_TARGET_FILE=.\scripts\build-script.bat" )
+if "%AG_TARGET_FILE%"=="" ( SET "AG_TARGET_FILE=.\scripts\ag.bat" )
 :: Set the default arguments.
-if "%AG_TARGET_ARGS%"=="" ( SET "AG_TARGET_ARGS=-ci" )
+if "%AG_TARGET_ARGS%"=="" ( SET "AG_TARGET_ARGS=--ci" )
 
 :: LOG: (current directory) > (run command) [arguments]
 echo.

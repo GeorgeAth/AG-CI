@@ -12,9 +12,8 @@ on:
 
 env:
   # Script configuration.
-  #AG_BUILD_TYPE: Release
-  AG_BUILD_PATH: build_android
-  AG_TARGET_ARGS: -ci -android
+  AG_CI: 1
+  AG_TARGET_ARGS: --ci --android
 
 jobs:
   cmake-build-android:
