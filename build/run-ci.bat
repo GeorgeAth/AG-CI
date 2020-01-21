@@ -31,6 +31,7 @@ if "%AG_TARGET_ARGS%"=="" (
 :: Run the command.
 echo "RUN : %AG_RUN_CMD%"
 CALL %AG_RUN_CMD%
+SET "ec=%ERRORLEVEL%"
 echo.
 :: Restore path.
 echo "INFO: Restore path from target-root."
@@ -44,4 +45,4 @@ IF %ERRORLEVEL% NEQ 0 (
 )
 
 :: Exit this script.
-exit /b
+exit /b %ec%

@@ -31,6 +31,7 @@ if [ -z "${AG_TARGET_ARGS}" ]; then {
 # Run the command.
 echo "RUN : $AG_RUN_CMD"
 $AG_RUN_CMD
+ec=$?
 echo
 # Restore path.
 echo "INFO: Restore path from target-root."
@@ -44,4 +45,4 @@ if [ $? -ne 0 ]; then {
 } fi
 
 # Exit this script.
-exit $?
+exit $ec
