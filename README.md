@@ -5,3 +5,4 @@
 ![](https://github.com/GeorgeAth/AG-CI/workflows/MacOS/badge.svg)
 ![](https://github.com/GeorgeAth/AG-CI/workflows/Android/badge.svg)
 ![](https://github.com/GeorgeAth/AG-CI/workflows/iOS/badge.svg)
+![](https://github.com/GeorgeAth/AG-CI/workflows/Web/badge.svg)
