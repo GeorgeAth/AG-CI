@@ -4,67 +4,63 @@
 #//////////////////////////////////////////////////////////////////////////////
 name: Web
 
-# This workflow is triggered on pushes to the master branch.
+# This workflow is triggered on pushes to the [master] branch.
 on:
   push:
     branches:
       - master
 
 env:
-  # Script configuration.
-  AG_CI: 1
-  AG_TARGET_ARGS: --ci --web
+  AG_CI: AG-CI
+  AG_CI_URL: GeorgeAth
+  AG_CI_PROJECT: AG-DEV
+  AG_CI_BRANCE: master
+  AG_CI_SCRIPT: build/run-ci.sh
+  AG_CI_ARGS: --ci --web
 
 jobs:
   cmake-build-web:
-    # Set job.Name.
     name: cmake-build-web
-    # Set job.TargetOS.
     runs-on: ubuntu-latest
 
     steps:
-    # Step : Checkout repository master branch.
-    - uses: actions/checkout@v1
-      with:
-        fetch-depth: 1
+      - name: "Checkout AG-CI."
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ env.AG_CI_URL }}/${{ env.AG_CI }}
+          ref: refs/heads/master
+          path: ${{ env.AG_CI }}
 
-    # Step : Download dependencies 1/2.
-    - uses: actions/checkout@v1
-      with:
-        repository: GeorgeAth/AG-DEP
-        ref: refs/heads/master
-        token: ${{ secrets.agci }}
-        fetch-depth: 1
+      - name: "Checkout the target project."
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ env.AG_CI_URL }}/${{ env.AG_CI_PROJECT }}
+          ref: refs/heads/${{ env.AG_CI_BRANCE }}
+          path: ${{ env.AG_CI_PROJECT }}
+          token: ${{ secrets.agci }}
+          persist-credentials: false
 
-    # Step : Download dependencies 2/2.
-    - uses: actions/checkout@v1
-      with:
-        repository: GeorgeAth/AG-DEV
-        ref: refs/heads/master
-        token: ${{ secrets.agci }}
-        fetch-depth: 1
+      - name: "Checkout Emscripten."
+        uses: actions/checkout@v2
+        with:
+          repository: emscripten-core/emsdk
+          ref: refs/heads/master
+          path: emsdk
 
-    # Step : Checkout Emscripten.
-    - uses: actions/checkout@v1
-      with:
-        repository: emscripten-core/emsdk
-        ref: refs/heads/master
-        fetch-depth: 1
+      - name: "Run CI."
+        run: |
+          pushd ./emsdk
+          ./emsdk install latest
+          ./emsdk activate latest
+          source ./emsdk_env.sh
+          popd
+          pushd ${{ env.AG_CI }}
+          ./${{ env.AG_CI_SCRIPT }} ${{ env.AG_CI_ARGS }}
+          popd
+        shell: bash
 
-    # Step : Run CI.
-    - name: Run CI.
-      shell: bash
-      run: |
-        pushd ../emsdk
-        ./emsdk install latest
-        ./emsdk activate latest
-        source ./emsdk_env.sh
-        popd
-        build/run-ci.sh
-
-    # Step : Upload artifacts.
-    - name: Upload Artifacts
-      uses: actions/upload-artifact@v1
-      with:
-        name: artifacts_web
-        path: ../.build/out/bin
+      - name: "Upload Artifacts."
+        uses: actions/upload-artifact@v1
+        with:
+          name: ag_artifacts_web
+          path: .build/out/bin
