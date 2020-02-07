@@ -16,7 +16,7 @@ env:
   AG_CI_PROJECT: AG-DEV
   AG_CI_BRANCE: master
   AG_CI_SCRIPT: build/run-ci.sh
-  AG_CI_ARGS: --ci
+  AG_CI_ARGS: --ci --macos
 
 jobs:
   cmake-build-macos:
