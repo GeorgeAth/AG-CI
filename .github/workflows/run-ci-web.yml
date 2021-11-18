@@ -1,6 +1,6 @@
 #//////////////////////////////////////////////////////////////////////////////
 # AG Development Framework.
-# Copyright 2011-2020 GeorgeAth. All Rights Reserved.
+# Copyright 2011-2021 GeorgeAth. All Rights Reserved.
 #//////////////////////////////////////////////////////////////////////////////
 name: Web
 
@@ -44,7 +44,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: emscripten-core/emsdk
-          ref: refs/heads/master
+          ref: refs/heads/main
           path: emsdk
 
       - name: "Run CI."
