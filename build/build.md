@@ -1,2 +1,2 @@
-vesrion: 0.10.1
-build: A1-211118-1843
+version: 0.10.2 (master)
+build: A0-220112-1300
