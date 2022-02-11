@@ -42,7 +42,8 @@ jobs:
 
       - name: "Run CI."
         run: |
-          sudo apt install mesa-common-dev
+          sudo apt-get update
+          sudo apt-get install mesa-common-dev
           pushd ${{ env.AG_CI }}
           ./${{ env.AG_CI_SCRIPT }} ${{ env.AG_CI_ARGS }}
           popd
